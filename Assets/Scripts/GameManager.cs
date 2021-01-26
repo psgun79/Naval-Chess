@@ -1,19 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public Canvas startingScreen;
     public Canvas teamUpScreen;
+    public Canvas deployScreen;
     public Canvas HUD;
     public Camera mainCamera;
     public GameObject gameboard;
 
-    public void gameStart()
+    public void teamUpStart()
     {
         startingScreen.gameObject.SetActive(false);
         teamUpScreen.gameObject.SetActive(true);
+    }
+
+    public void deployStart()
+    {
+        teamUpScreen.gameObject.SetActive(false);
+        deployScreen.gameObject.SetActive(true);
+        this.gameObject.GetComponent<teamDeploy>().ships = this.gameObject.GetComponent<teamOrganize>().ships;
+        this.gameObject.GetComponent<teamDeploy>().UpdateCount();
     }
 
     public void gameQuit()

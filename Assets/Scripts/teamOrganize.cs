@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class teamOrganize : MonoBehaviour
 {
-    public int team = 0;
-    int cnt = 0; // 1개 이상 고르지 않으면 시작하지 못함
+    int team = 0;
+    int cnt = 0;
     int budget = 15;
     int money = 15;
     public int[,] ships = new int[,] {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}};
@@ -19,9 +19,12 @@ public class teamOrganize : MonoBehaviour
     public Text count_4;
     public Text team_text;
     public Text money_text;
+    public GameObject message;
+    public GameManager system;
 
     void Start()
     {
+        message.SetActive(false);
         UpdateCount();
     }
 
@@ -37,9 +40,9 @@ public class teamOrganize : MonoBehaviour
 
     public void Increment(int type)
     {
-        // 최대 제한을 넘기지 않으면서 돈이 부족하지 않을 때
         if (ships[team, type] + 1 <= limit[type] && money - cost[type] >= 0)
         {
+            if (message.activeSelf) message.SetActive(false);
             cnt++;
             ships[team, type]++;
             money = money - cost[type];
@@ -49,7 +52,6 @@ public class teamOrganize : MonoBehaviour
 
     public void Decrement(int type)
     {
-        // 배의 개수가 음수가 되지 않을 때
         if (ships[team, type] - 1 >= 0)
         {
             cnt--;
@@ -63,10 +65,11 @@ public class teamOrganize : MonoBehaviour
     {
         if (cnt == 0)
         {
-            // 배를 1개 이상 구매하지 않으면 시작할 수 없다는 메시지 출력
+            message.SetActive(true);
         }
         else if (team == 0)
         {
+            message.SetActive(false);
             money = budget;
             cnt = 0;
             team = 1;
@@ -75,7 +78,7 @@ public class teamOrganize : MonoBehaviour
         }
         else
         {
-            // 게임 시작을 위해 GameManager로 권한 넘김
+            system.deployStart();
         }
     }
 }
