@@ -1,5 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,10 +11,11 @@ public class teamDeploy : MonoBehaviour
         public int xPos;
         public int yPos;
         public int type;
+        public Transform icon;
     }
     public List<deployInfo> ships_deployed = new List<deployInfo>();
-    public List<deployInfo> deployment_TOP = new List<deployInfo>();
-    public List<deployInfo> deployment_BOTTOM = new List<deployInfo>();
+    public List<deployInfo> deployment_TOP;
+    public List<deployInfo> deployment_BOTTOM;
     public GameObject image_0;
     public GameObject image_1;
     public GameObject image_2;
@@ -35,11 +37,23 @@ public class teamDeploy : MonoBehaviour
     public int[,] ships; // 일회용 리스트
     public int[,,] lock_table = new int[9, 7, 2]; // 가로, 세로, (lock 0~2 , type 0~4)
     public int selected = -1;
+    public List<Transform> icons = new List<Transform>();
+    public Transform icon_0;
+    public Transform icon_1;
+    public Transform icon_2;
+    public Transform icon_3;
+    public Transform icon_4;
     public GameObject message;
-    public teamOrganize system;
+    public GameObject board;
+    public GameManager system;
 
     void Start()
     {
+        icons.Add(icon_0);
+        icons.Add(icon_1);
+        icons.Add(icon_2);
+        icons.Add(icon_3);
+        icons.Add(icon_4);
         message.SetActive(false);
         arrow_0.SetActive(false);
         arrow_1.SetActive(false);
@@ -96,31 +110,64 @@ public class teamDeploy : MonoBehaviour
 
     public void Add(int xPos, int yPos)
     {
+        message.SetActive(false);
         cnt--;
         deployInfo s = new deployInfo();
         s.xPos = xPos;
         s.yPos = yPos;
         s.type = selected;
+        var coordinates = Position(xPos, yPos, selected);
+        s.icon = Instantiate(icons[selected], board.transform, false);
+        s.icon.localPosition = new Vector3(coordinates.Item1, coordinates.Item2, 0);
         ships_deployed.Add(s);
         ships[team, selected]--;
         LightOff(selected);
-        selected = -1;
         UpdateCount();
     }
 
-    public void Remove(int xPos, int yPos)
+    public void Remove(int xPos, int yPos, int mode)
     {
-        foreach (deployInfo s in ships_deployed)
+        if (mode == 0)
         {
-            if (s.xPos == xPos && s.yPos == yPos)
+            foreach (deployInfo s in ships_deployed)
             {
-                ships[team, s.type]++;
-                cnt++;
-                ships_deployed.Remove(s);
-                break;
+                if (s.xPos == xPos && s.yPos == yPos)
+                {
+                    ships[team, s.type]++;
+                    Destroy(s.icon.gameObject);
+                    cnt++;
+                    ships_deployed.Remove(s);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            foreach (deployInfo s in ships_deployed)
+            {
+                Destroy(s.icon.gameObject);
             }
         }
         UpdateCount();
+    }
+
+    (float, float) Position(int xPos, int yPos, int type)
+    {
+        float x, y, k;
+        if (type == 4) k = Convert.ToSingle(-49.5);
+        else if (type == 2 || type == 3) k = Convert.ToSingle(-24.75);
+        else k = 0;
+        if (xPos % 2 == 0)
+        {
+            x = Convert.ToSingle((yPos * 90) - 129);
+            y = Convert.ToSingle((xPos / 2 * 49.5) - 59 + k);
+        }
+        else
+        {
+            x = Convert.ToSingle((yPos * 90) - 84);
+            y = Convert.ToSingle(((xPos - 1) / 2 * 49.5) - 34.25 + k);
+        }
+        return (x, y);
     }
 
     void LightOn(int type)
@@ -176,16 +223,29 @@ public class teamDeploy : MonoBehaviour
         else if (team == 0)
         {
             message.SetActive(false);
-            team = 1;
+            team++;
             team_text.GetComponent<Text>().text = "<color=#0000ffff>BOTTOM</color>";
-            // deployment_TOP에 ships_deployed 최종본 대입
-            // ships_deployed 초기화
+            deployment_TOP = ships_deployed.ToList();
+            Remove(0, 0, 1);
+            ships_deployed = new List<deployInfo>();
+            int i, j, k;
+            for (i = 0; i < lock_table.GetLength(0); i++)
+            {
+                for (j = 0; j < lock_table.GetLength(1); j++)
+                {
+                    for (k = 0; k < lock_table.GetLength(2); k++)
+                    {
+                        lock_table[i, j, k] = -1;
+                    }
+                }
+            }
             UpdateCount();
         }
         else
         {
-            // deployment_BOTTOM에 ships_deployed 최종본 대입
-            // GameManager로 권한 넘김
+            deployment_BOTTOM = ships_deployed.ToList();
+            Remove(0, 0, 1);
+            system.gameStart();
         }
     }
 }

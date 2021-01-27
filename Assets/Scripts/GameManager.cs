@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,7 +6,6 @@ public class GameManager : MonoBehaviour
     public Canvas teamUpScreen;
     public Canvas deployScreen;
     public Canvas HUD;
-    public Camera mainCamera;
     public GameObject gameboard;
 
     public void teamUpStart()
@@ -26,6 +22,13 @@ public class GameManager : MonoBehaviour
         this.gameObject.GetComponent<teamDeploy>().UpdateCount();
     }
 
+    public void gameStart()
+    {
+        deployScreen.gameObject.SetActive(false);
+        gameboard.SetActive(true);
+        HUD.gameObject.SetActive(true);
+    }
+
     public void gameQuit()
     {
         #if UNITY_EDITOR
@@ -34,13 +37,4 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         #endif
     }
-
-    /*
-    public Transform prefab;
-
-    public void spawn() //임시 함수
-    {
-        Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
-    }
-    */
 }

@@ -1075,12 +1075,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1123,7 +1123,7 @@ RectTransform:
   - {fileID: 440230953}
   - {fileID: 2087969285}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2473,7 +2473,7 @@ RectTransform:
   m_Children:
   - {fileID: 246346581}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11629,7 +11629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!1 &708628720
 GameObject:
@@ -14209,8 +14209,9 @@ Transform:
   - {fileID: 677963449}
   - {fileID: 321864375}
   - {fileID: 151850516}
+  - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &921351288
 PrefabInstance:
@@ -14839,13 +14840,14 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0
@@ -14905,12 +14907,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 6.928, y: 13, z: 4.5}
+  m_LocalPosition: {x: 7, y: 6.5, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 919232489}
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 90, y: -180, z: -90}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efdafd42c5970d345b5a392e5039d8d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mousePos: {fileID: 246346582}
 --- !u!1 &980740635
 GameObject:
   m_ObjectHideFlags: 0
@@ -17210,7 +17225,6 @@ MonoBehaviour:
   teamUpScreen: {fileID: 1676680831}
   deployScreen: {fileID: 1936033406}
   HUD: {fileID: 185067746}
-  mainCamera: {fileID: 963194227}
   gameboard: {fileID: 919232488}
 --- !u!4 &1124426405
 Transform:
@@ -17224,7 +17238,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1124426406
 MonoBehaviour:
@@ -17276,8 +17290,15 @@ MonoBehaviour:
   count_4: {fileID: 1931640978}
   team_text: {fileID: 2096722362}
   selected: -1
+  icons: []
+  icon_0: {fileID: 6121298263289695934, guid: 63d117bba3ed1f54a948d9af1b9e18ab, type: 3}
+  icon_1: {fileID: 7071798080026157492, guid: ba2edced3303c0643b2d28f337f28507, type: 3}
+  icon_2: {fileID: 4702568410854307202, guid: ffd12fc78a3dc1e4bbc9712571db8ede, type: 3}
+  icon_3: {fileID: 7834710033422702545, guid: 8cbdfd0a5dafbab42aaa6c7c476b55d7, type: 3}
+  icon_4: {fileID: 1368508422652336964, guid: 3692dafe6705b2b4dad273b1322c0e19, type: 3}
   message: {fileID: 1410292973}
-  system: {fileID: 1124426406}
+  board: {fileID: 1491105348}
+  system: {fileID: 1124426404}
 --- !u!1001 &1127220030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19122,8 +19143,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1124426406}
-        m_TargetAssemblyTypeName: teamOrganize, Assembly-CSharp
+      - m_Target: {fileID: 1124426407}
+        m_TargetAssemblyTypeName: teamDeploy, Assembly-CSharp
         m_MethodName: Finish
         m_Mode: 1
         m_Arguments:
@@ -21441,7 +21462,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1395298466
 PrefabInstance:
@@ -25582,12 +25603,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -25641,7 +25662,7 @@ RectTransform:
   - {fileID: 1466662435}
   - {fileID: 1752623851}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -29518,12 +29539,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -29575,7 +29596,7 @@ RectTransform:
   - {fileID: 1410292974}
   - {fileID: 1270518892}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
