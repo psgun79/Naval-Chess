@@ -1,22 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class shipInfo : MonoBehaviour
 {
-    public int currentHealth = 2;
-    public int totalHealth = 2;
-    public int team = 1;
-    public int xPos = -1;
-    public int yPos = -1;
-    public int type = 0;
+    public int currentHealth;
+    public int totalHealth;
+    public int AP = 3;
+    public int team;
+    public int xPos;
+    public int yPos;
+    public int type;
+    public Transform icon;
     public RectTransform currentHealthBar;
     public RectTransform totalHealthBar;
 
-    public void OnSpawn(int x, int y)
+    public void transferInfo(shipInfo s)
     {
-        xPos = x;
-        yPos = y;
+        type = s.type;
+        team = s.team;
+        if (team == 0)
+        {
+            xPos = s.xPos;
+            if (s.xPos % 2 == 0) yPos = 6 - s.yPos; else yPos = 5 - s.yPos;
+        }
+        else
+        {
+            xPos = 32 - s.xPos;
+            yPos = s.yPos;
+        }
+        int tmp;
+        if (type == 0) tmp = 2;
+        else if (type == 2) tmp = 4;
+        else if (type == 4) tmp = 5;
+        else tmp = 3;
+        currentHealth = tmp;
+        totalHealth = tmp;
         Relocate();
     }
 
@@ -28,8 +46,15 @@ public class shipInfo : MonoBehaviour
 
     public void Relocate()
     {
-        this.transform.position = new Vector3();
-        // xPos, yPos로 몇 번째 row/column 인지 계산하고 그에 해당하는 타일 위치 찾아냄
+        float x, z, k;
+        if (type == 4) k = Convert.ToSingle(0.866);
+        else if (type == 2 || type == 3) k = Convert.ToSingle(0.433);
+        else k = 0;
+        if (team == 0) k = k * (-1);
+        x = Convert.ToSingle(xPos * 0.433 + k);
+        z = Convert.ToSingle(yPos * 1.5);
+        if (xPos % 2 == 1) z = z + Convert.ToSingle(0.75);
+        this.transform.position = new Vector3(x, 0, z);
     }
 
     public void OnShoot(int amount)

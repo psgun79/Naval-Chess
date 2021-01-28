@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
         deployScreen.gameObject.SetActive(false);
         gameboard.SetActive(true);
         HUD.gameObject.SetActive(true);
+        this.gameObject.GetComponent<boardSystem>().PutPieces(this.gameObject.GetComponent<teamDeploy>().deployment_TOP);
+        this.gameObject.GetComponent<boardSystem>().PutPieces(this.gameObject.GetComponent<teamDeploy>().deployment_BOTTOM);
+        this.gameObject.GetComponent<boardSystem>().gameStarted = true;
     }
 
     public void gameQuit()

@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class teamDeploy : MonoBehaviour
 {
-    public struct deployInfo // 이후 게임 시작할 때 유닛 배치에 활용할 예정
+    /*public struct deployInfo // 이후 게임 시작할 때 유닛 배치에 활용할 예정
     {
         public int xPos;
         public int yPos;
         public int type;
         public Transform icon;
-    }
-    public List<deployInfo> ships_deployed = new List<deployInfo>();
-    public List<deployInfo> deployment_TOP;
-    public List<deployInfo> deployment_BOTTOM;
+    }*/
+    public List<GameObject> ships_deployed = new List<GameObject>();
+    public List<GameObject> deployment_TOP;
+    public List<GameObject> deployment_BOTTOM;
     public GameObject image_0;
     public GameObject image_1;
     public GameObject image_2;
@@ -43,6 +43,7 @@ public class teamDeploy : MonoBehaviour
     public Transform icon_2;
     public Transform icon_3;
     public Transform icon_4;
+    public GameObject scriptOnly;
     public GameObject message;
     public GameObject board;
     public GameManager system;
@@ -112,13 +113,14 @@ public class teamDeploy : MonoBehaviour
     {
         message.SetActive(false);
         cnt--;
-        deployInfo s = new deployInfo();
-        s.xPos = xPos;
-        s.yPos = yPos;
-        s.type = selected;
+        GameObject s = Instantiate(scriptOnly);
+        s.GetComponent<shipInfo>().xPos = xPos;
+        s.GetComponent<shipInfo>().yPos = yPos;
+        s.GetComponent<shipInfo>().type = selected;
+        s.GetComponent<shipInfo>().team = team;
         var coordinates = Position(xPos, yPos, selected);
-        s.icon = Instantiate(icons[selected], board.transform, false);
-        s.icon.localPosition = new Vector3(coordinates.Item1, coordinates.Item2, 0);
+        s.GetComponent<shipInfo>().icon = Instantiate(icons[selected], board.transform, false);
+        s.GetComponent<shipInfo>().icon.localPosition = new Vector3(coordinates.Item1, coordinates.Item2, 0);
         ships_deployed.Add(s);
         ships[team, selected]--;
         LightOff(selected);
@@ -129,23 +131,24 @@ public class teamDeploy : MonoBehaviour
     {
         if (mode == 0)
         {
-            foreach (deployInfo s in ships_deployed)
+            foreach (GameObject s in ships_deployed)
             {
-                if (s.xPos == xPos && s.yPos == yPos)
+                if (s.GetComponent<shipInfo>().xPos == xPos && s.GetComponent<shipInfo>().yPos == yPos)
                 {
-                    ships[team, s.type]++;
-                    Destroy(s.icon.gameObject);
+                    ships[team, s.GetComponent<shipInfo>().type]++;
+                    Destroy(s.GetComponent<shipInfo>().icon.gameObject);
                     cnt++;
                     ships_deployed.Remove(s);
+                    Destroy(s);
                     break;
                 }
             }
         }
         else
         {
-            foreach (deployInfo s in ships_deployed)
+            foreach (GameObject s in ships_deployed)
             {
-                Destroy(s.icon.gameObject);
+                Destroy(s.GetComponent<shipInfo>().icon.gameObject);
             }
         }
         UpdateCount();
@@ -227,7 +230,7 @@ public class teamDeploy : MonoBehaviour
             team_text.GetComponent<Text>().text = "<color=#0000ffff>BOTTOM</color>";
             deployment_TOP = ships_deployed.ToList();
             Remove(0, 0, 1);
-            ships_deployed = new List<deployInfo>();
+            ships_deployed = new List<GameObject>();
             int i, j, k;
             for (i = 0; i < lock_table.GetLength(0); i++)
             {

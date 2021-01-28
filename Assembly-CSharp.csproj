@@ -40,9 +40,10 @@
      <Compile Include="Assets\Scripts\teamOrganize.cs" />
      <Compile Include="Assets\Imported\Simple Warships\Demo Scene\Rotate.cs" />
      <Compile Include="Assets\Scripts\tileSelection.cs" />
+     <Compile Include="Assets\Scripts\cameraMovement.cs" />
      <Compile Include="Assets\Scripts\teamDeploy.cs" />
      <Compile Include="Assets\Scripts\shipInfo.cs" />
-     <Compile Include="Assets\Scripts\cameraMovement.cs" />
+     <Compile Include="Assets\Scripts\boardSystem.cs" />
      <None Include="Assets\Imported\Simple Warships\Demo Scene\ReadMe.txt" />
      <None Include="Assets\Imported\Wispy Sky\ReadMe.txt" />
     <Reference Include="UnityEngine">
