@@ -45,12 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f9d24dd415baa4d9d8d7d9a534d978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  totalHealth: 0
+  currentHealth: 2
+  totalHealth: 2
+  AP: 3
   team: 0
   xPos: 0
   yPos: 0
   type: 0
+  len: 1
   icon: {fileID: 0}
   currentHealthBar: {fileID: 1081245312659473244}
   totalHealthBar: {fileID: 4327690105984618104}
@@ -68,7 +70,7 @@ GameObject:
   - component: {fileID: 1210499610560948509}
   m_Layer: 0
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +169,7 @@ GameObject:
   - component: {fileID: 2128769790582716767}
   m_Layer: 0
   m_Name: Frame
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,7 +242,7 @@ GameObject:
   - component: {fileID: 3755073180474591158}
   m_Layer: 0
   m_Name: Health bar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -279,7 +281,7 @@ GameObject:
   - component: {fileID: 1249966786590012031}
   m_Layer: 0
   m_Name: Health
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -348,9 +350,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6823398657629010912}
     m_Modifications:
+    - target: {fileID: 1246362233793768, guid: 09419625ea90e2f478b96ae476784b2c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250201171931244, guid: 09419625ea90e2f478b96ae476784b2c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1307028158353980, guid: 09419625ea90e2f478b96ae476784b2c, type: 3}
       propertyPath: m_Name
       value: Corvette
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307028158353980, guid: 09419625ea90e2f478b96ae476784b2c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345887407032708, guid: 09419625ea90e2f478b96ae476784b2c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376123167255182, guid: 09419625ea90e2f478b96ae476784b2c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641331845821596, guid: 09419625ea90e2f478b96ae476784b2c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762342275173686, guid: 09419625ea90e2f478b96ae476784b2c, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4134487672752038, guid: 09419625ea90e2f478b96ae476784b2c, type: 3}
       propertyPath: m_RootOrder

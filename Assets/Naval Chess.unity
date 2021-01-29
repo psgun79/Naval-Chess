@@ -1143,7 +1143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1880,7 +1880,7 @@ GameObject:
   - component: {fileID: 120454188}
   m_Layer: 5
   m_Name: Attack
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1924,13 +1924,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
+        - m_Target: {fileID: 1124426408}
+          m_TargetAssemblyTypeName: boardSystem, Assembly-CSharp
+          m_MethodName: AttackButtonClick
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2462,7 +2462,7 @@ GameObject:
   - component: {fileID: 185067744}
   m_Layer: 5
   m_Name: HUD
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8842,7 +8842,7 @@ GameObject:
   - component: {fileID: 547513147}
   m_Layer: 5
   m_Name: Available
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8880,7 +8880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -9761,11 +9761,11 @@ GameObject:
   - component: {fileID: 598241978}
   m_Layer: 5
   m_Name: Pending
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &598241977
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9799,7 +9799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -10603,7 +10603,7 @@ GameObject:
   - component: {fileID: 642549926}
   m_Layer: 5
   m_Name: Available
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10641,7 +10641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11598,11 +11598,11 @@ GameObject:
   - component: {fileID: 677016677}
   m_Layer: 5
   m_Name: Pending
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &677016676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11636,7 +11636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12236,9 +12236,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 718860256}
+  - component: {fileID: 718860257}
   m_Layer: 5
   m_Name: Cancel
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12263,6 +12264,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &718860257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718860255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1124426408}
+          m_TargetAssemblyTypeName: boardSystem, Assembly-CSharp
+          m_MethodName: CancelButtonClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &725820220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12338,7 +12368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14036,11 +14066,11 @@ GameObject:
   - component: {fileID: 839399792}
   m_Layer: 5
   m_Name: Action Menu
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &839399792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14945,7 +14975,7 @@ GameObject:
   - component: {fileID: 933039313}
   m_Layer: 5
   m_Name: Available
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14983,7 +15013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -15657,6 +15687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efdafd42c5970d345b5a392e5039d8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
 --- !u!1 &980740635
 GameObject:
   m_ObjectHideFlags: 0
@@ -17107,7 +17138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18152,8 +18183,21 @@ MonoBehaviour:
   prefab_2_BOTTOM: {fileID: 1107636709505484836, guid: ba3161b2058d678408d3e4e3d053fc37, type: 3}
   prefab_3_BOTTOM: {fileID: 1107636709505484836, guid: 7d82046252da41a4684239a87698fa8f, type: 3}
   prefab_4_BOTTOM: {fileID: 1107636709505484836, guid: 596503a5eb9f3c14d8ddd9abbc089111, type: 3}
-  selectedShip: {fileID: 0}
+  ships_TOP: []
+  ships_BOTTOM: []
+  attackable: []
+  movable: []
+  clickedTransform: {fileID: 0}
+  board: {fileID: 919232488}
   menu: {fileID: 839399791}
+  attack_pending: {fileID: 677016675}
+  attack_unable: {fileID: 1496461955}
+  cancel: {fileID: 718860255}
+  move_pending: {fileID: 598241976}
+  move_unable: {fileID: 1212645958}
+  gameStarted: 0
+  mode_attack: 0
+  mode_move: 0
 --- !u!1001 &1127220030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19233,11 +19277,11 @@ GameObject:
   - component: {fileID: 1212645960}
   m_Layer: 5
   m_Name: Unable
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1212645959
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19271,7 +19315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -24497,11 +24541,11 @@ GameObject:
   - component: {fileID: 1496461957}
   m_Layer: 5
   m_Name: Unable
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1496461956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24535,7 +24579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -25387,9 +25431,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1576896139}
+  - component: {fileID: 1576896140}
   m_Layer: 5
   m_Name: Move
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25416,6 +25461,35 @@ RectTransform:
   m_AnchoredPosition: {x: 120, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1576896140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576896138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1124426408}
+          m_TargetAssemblyTypeName: boardSystem, Assembly-CSharp
+          m_MethodName: MoveButtonClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1577586388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26401,7 +26475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30018,7 +30092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30734,7 +30808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4628389067447750, guid: f5738bfb06b8b664f8165c74ec50881a, type: 3}
       propertyPath: m_LocalPosition.x

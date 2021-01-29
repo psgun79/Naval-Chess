@@ -6,13 +6,6 @@ using UnityEngine.UI;
 
 public class teamDeploy : MonoBehaviour
 {
-    /*public struct deployInfo // 이후 게임 시작할 때 유닛 배치에 활용할 예정
-    {
-        public int xPos;
-        public int yPos;
-        public int type;
-        public Transform icon;
-    }*/
     public List<GameObject> ships_deployed = new List<GameObject>();
     public List<GameObject> deployment_TOP;
     public List<GameObject> deployment_BOTTOM;
@@ -34,8 +27,8 @@ public class teamDeploy : MonoBehaviour
     public Text team_text;
     int team = 0;
     int cnt;
-    public int[,] ships; // 일회용 리스트
-    public int[,,] lock_table = new int[9, 7, 2]; // 가로, 세로, (lock 0~2 , type 0~4)
+    public int[,] ships;
+    public int[,,] lock_table = new int[9, 7, 2];
     public int selected = -1;
     public List<Transform> icons = new List<Transform>();
     public Transform icon_0;

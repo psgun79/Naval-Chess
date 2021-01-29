@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class cameraMovement : MonoBehaviour
 {
     float yPos;
     float lowerBound = Screen.height / 4;
     float upperBound = Screen.height * 3 / 4;
-    float speed = 0f;
+    public float speed = 0f;
     float acceleration = 0.0004f;
     float threshold = 0.00005f;
     float direction;
@@ -35,6 +32,11 @@ public class cameraMovement : MonoBehaviour
         }
         else
         {
+            if (Mathf.Abs(speed) <= threshold)
+            {
+                speed = 0;
+                return;
+            }
             if (speed > 0)
             {
                 speed -= acceleration;
@@ -47,7 +49,6 @@ public class cameraMovement : MonoBehaviour
             }
             else return;
             transform.Translate(0, speed, 0);
-            if (Mathf.Abs(speed) <= threshold) speed = 0;
         }
         if (transform.position.x <= 0.125f) transform.position = new Vector3(0.125f, transform.position.y, transform.position.z);
         else if (transform.position.x >= 13.875) transform.position = new Vector3(13.875f, transform.position.y, transform.position.z);

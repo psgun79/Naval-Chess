@@ -10,6 +10,7 @@ public class shipInfo : MonoBehaviour
     public int xPos;
     public int yPos;
     public int type;
+    public int len;
     public Transform icon;
     public RectTransform currentHealthBar;
     public RectTransform totalHealthBar;
@@ -28,13 +29,6 @@ public class shipInfo : MonoBehaviour
             xPos = 32 - s.xPos;
             yPos = s.yPos;
         }
-        int tmp;
-        if (type == 0) tmp = 2;
-        else if (type == 2) tmp = 4;
-        else if (type == 4) tmp = 5;
-        else tmp = 3;
-        currentHealth = tmp;
-        totalHealth = tmp;
         Relocate();
     }
 
