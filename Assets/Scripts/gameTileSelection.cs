@@ -3,10 +3,14 @@ using System;
 
 public class gameTileSelection : MonoBehaviour
 {
+    float a = 0;
+    float b = 1f;
+    float c = Convert.ToSingle(159.0 / 255.0);
+    public GameObject cover;
     public int xPos;
     public int yPos;
-    public bool movable;
-    public boardSystem system;
+    public bool movable = false;
+    boardSystem system;
 
     void Start()
     {
@@ -19,7 +23,7 @@ public class gameTileSelection : MonoBehaviour
     {
         if (system.mode_move && movable)
         {
-            // move pending 단계에서만 강조 표시
+            cover.GetComponent<Light>().color = new Color(1, 1, 1);
         }
     }
 
@@ -27,7 +31,7 @@ public class gameTileSelection : MonoBehaviour
     {
         if (system.mode_move && movable)
         {
-            // move pending 단계에서만 강조 표시 제거
+            cover.GetComponent<Light>().color = new Color(a, b, c);
         }
     }
 
@@ -36,6 +40,7 @@ public class gameTileSelection : MonoBehaviour
         if (system.mode_move && movable)
         {
             system.Move(xPos, yPos);
+            cover.GetComponent<Light>().color = new Color(a, b, c);
         }
     }
 
@@ -43,7 +48,9 @@ public class gameTileSelection : MonoBehaviour
     {
         if (!system.mode_move)
         {
-            // 강조 표시 제거
+            cover.GetComponent<Light>().enabled = false;
+            movable = false;
         }
+        else if (movable) cover.GetComponent<Light>().enabled = true;
     }
 }

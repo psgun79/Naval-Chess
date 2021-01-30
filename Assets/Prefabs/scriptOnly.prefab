@@ -45,10 +45,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   totalHealth: 0
+  AP: 0
   team: 0
   xPos: 0
   yPos: 0
   type: 0
+  len: 0
   icon: {fileID: 0}
   currentHealthBar: {fileID: 0}
   totalHealthBar: {fileID: 0}
+  cover: {fileID: 0}
+  attackable: 0
+  selected: 0
+  scriptonly: 1

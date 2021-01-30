@@ -6,12 +6,18 @@ public class cameraMovement : MonoBehaviour
     float lowerBound = Screen.height / 4;
     float upperBound = Screen.height * 3 / 4;
     public float speed = 0f;
-    float acceleration = 0.0004f;
+    float acceleration = 0.0005f;
     float threshold = 0.00005f;
     float direction;
+    public GameObject menu;
 
     void Update()
     {
+        if (menu.activeSelf)
+        {
+            speed = 0;
+            return;
+        }
         yPos = Input.mousePosition.y;
         if (yPos >= upperBound || yPos <= lowerBound)
         {

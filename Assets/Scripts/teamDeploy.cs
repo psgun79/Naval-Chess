@@ -9,21 +9,6 @@ public class teamDeploy : MonoBehaviour
     public List<GameObject> ships_deployed = new List<GameObject>();
     public List<GameObject> deployment_TOP;
     public List<GameObject> deployment_BOTTOM;
-    public GameObject image_0;
-    public GameObject image_1;
-    public GameObject image_2;
-    public GameObject image_3;
-    public GameObject image_4;
-    public GameObject arrow_0;
-    public GameObject arrow_1;
-    public GameObject arrow_2;
-    public GameObject arrow_3;
-    public GameObject arrow_4;
-    public Text count_0;
-    public Text count_1;
-    public Text count_2;
-    public Text count_3;
-    public Text count_4;
     public Text team_text;
     int team = 0;
     int cnt;
@@ -31,11 +16,8 @@ public class teamDeploy : MonoBehaviour
     public int[,,] lock_table = new int[9, 7, 2];
     public int selected = -1;
     public List<Transform> icons = new List<Transform>();
-    public Transform icon_0;
-    public Transform icon_1;
-    public Transform icon_2;
-    public Transform icon_3;
-    public Transform icon_4;
+    public List<Text> texts = new List<Text>();
+    public List<GameObject> arrows = new List<GameObject>();
     public GameObject scriptOnly;
     public GameObject message;
     public GameObject board;
@@ -43,17 +25,7 @@ public class teamDeploy : MonoBehaviour
 
     void Start()
     {
-        icons.Add(icon_0);
-        icons.Add(icon_1);
-        icons.Add(icon_2);
-        icons.Add(icon_3);
-        icons.Add(icon_4);
         message.SetActive(false);
-        arrow_0.SetActive(false);
-        arrow_1.SetActive(false);
-        arrow_2.SetActive(false);
-        arrow_3.SetActive(false);
-        arrow_4.SetActive(false);
         int i, j, k;
         for (i = 0; i < lock_table.GetLength(0); i++)
         {
@@ -69,14 +41,10 @@ public class teamDeploy : MonoBehaviour
 
     public void UpdateCount()
     {
-        count_0.GetComponent<Text>().text = ships[team, 0].ToString();
-        count_1.GetComponent<Text>().text = ships[team, 1].ToString();
-        count_2.GetComponent<Text>().text = ships[team, 2].ToString();
-        count_3.GetComponent<Text>().text = ships[team, 3].ToString();
-        count_4.GetComponent<Text>().text = ships[team, 4].ToString();
         int tmp = 0;
         for (int i = 0; i < ships.GetLength(1); i++)
         {
+            texts[i].GetComponent<Text>().text = ships[team, i].ToString();
             tmp += ships[team, i];
         }
         cnt = tmp;
@@ -97,7 +65,7 @@ public class teamDeploy : MonoBehaviour
         }
         else
         {
-            LightOff(selected);
+            if (selected != -1) LightOff(selected);
             selected = -1;
         }
     }
@@ -168,46 +136,12 @@ public class teamDeploy : MonoBehaviour
 
     void LightOn(int type)
     {
-        switch (type)
-        {
-            case 0:
-                arrow_0.SetActive(true);
-                break;
-            case 1:
-                arrow_1.SetActive(true);
-                break;
-            case 2:
-                arrow_2.SetActive(true);
-                break;
-            case 3:
-                arrow_3.SetActive(true);
-                break;
-            default:
-                arrow_4.SetActive(true);
-                break;
-        }
+        arrows[type].SetActive(true);
     }
 
     void LightOff(int type)
     {
-        switch (type)
-        {
-            case 0:
-                arrow_0.SetActive(false);
-                break;
-            case 1:
-                arrow_1.SetActive(false);
-                break;
-            case 2:
-                arrow_2.SetActive(false);
-                break;
-            case 3:
-                arrow_3.SetActive(false);
-                break;
-            default:
-                arrow_4.SetActive(false);
-                break;
-        }
+        arrows[type].SetActive(false);
     }
 
     public void Finish()

@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class shipInfo : MonoBehaviour
 {
+    float a = Convert.ToSingle(227.0 / 255.0);
+    float b = Convert.ToSingle(89.0 / 255.0);
+    float c = Convert.ToSingle(89.0 / 255.0);
+    float d = Convert.ToSingle(231.0 / 255.0);
+    float e = Convert.ToSingle(19.0 / 255.0);
+    float f = Convert.ToSingle(19.0 / 255.0);
     public int currentHealth;
     public int totalHealth;
     public int AP = 3;
@@ -14,6 +20,17 @@ public class shipInfo : MonoBehaviour
     public Transform icon;
     public RectTransform currentHealthBar;
     public RectTransform totalHealthBar;
+    public Canvas healthCanvas;
+    public GameObject cover;
+    public bool attackable = false;
+    public bool selected = false;
+    public bool scriptonly;
+    boardSystem system;
+
+    void Start()
+    {
+        system = GameObject.Find("Game Manager").GetComponent<boardSystem>();
+    }
 
     public void transferInfo(shipInfo s)
     {
@@ -30,6 +47,36 @@ public class shipInfo : MonoBehaviour
             yPos = s.yPos;
         }
         Relocate();
+    }
+
+    public void HoverEnter()
+    {
+        if (system.mode_attack && attackable && system.selectedInfo.type != 2 && system.selectedInfo.type != 4)
+        {
+            cover.GetComponent<Light>().color = new Color(d, e, f);
+        }
+    }
+
+    public void HoverExit()
+    {
+        if (system.mode_attack && attackable && system.selectedInfo.type != 2 && system.selectedInfo.type != 4)
+        {
+            cover.GetComponent<Light>().color = new Color(a, b, c);
+        }
+    }
+
+    public void OnClick()
+    {
+        if (!system.menu.activeSelf)
+        {
+            system.UpdateMenu(this.transform.root.gameObject);
+            system.menu.SetActive(true);
+        }
+        else if (attackable)
+        {
+            system.Attack(this.gameObject);
+            OnDamage();
+        }
     }
 
     public void OnMove(int xDel, int yDel)
@@ -51,30 +98,66 @@ public class shipInfo : MonoBehaviour
         this.transform.position = new Vector3(x, 0, z);
     }
 
-    public void OnShoot(int amount)
+    public void OnDamage()
     {
-        currentHealth = currentHealth - amount;
-        if (currentHealth <= 0)
-        {
-            OnDeath();
-        }
-        currentHealthBar.sizeDelta = new Vector2(); // new Vector2(원래 x방향 길이 * (현재 체력 / 최대 체력) , 원래 y방향 길이);
+        currentHealth = currentHealth - 1;
+        currentHealthBar.sizeDelta
+        = new Vector2(currentHealthBar.sizeDelta.x, 0.5f * (Convert.ToSingle(currentHealth) / Convert.ToSingle(totalHealth)));
+        healthCanvas.gameObject.SetActive(true);
+        if (currentHealth <= 0) OnDeath();
     }
 
     public void OnDeath()
     {
-        // 인스턴스 삭제
+        if (team == 0)
+        {
+            foreach (GameObject ship in system.ships_TOP)
+            {
+                if (GameObject.ReferenceEquals(ship, this.gameObject))
+                {
+                    system.ships_TOP.Remove(ship);
+                    system.cnt_TOP--;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            foreach (GameObject ship in system.ships_BOTTOM)
+            {
+                if (GameObject.ReferenceEquals(ship, this.gameObject))
+                {
+                    system.ships_BOTTOM.Remove(ship);
+                    system.cnt_BOTTOM--;
+                    break;
+                }
+            }
+        }
+        Destroy(this.gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (scriptonly) return;
+        if (!system.menu.activeSelf || !system.mode_attack)
+        {
+            cover.GetComponent<Light>().enabled = false;
+            attackable = false;
+        }
+        else if (!GameObject.ReferenceEquals(system.selectedInfo.gameObject, this.gameObject))
+        {
+            cover.GetComponent<Light>().enabled = false;
+            selected = false;
+        }
+        if (attackable && system.mode_attack)
+        {
+            cover.GetComponent<Light>().enabled = true;
+            cover.GetComponent<Light>().color = new Color(a, b, c);
+        }
+        else if (selected)
+        {
+            cover.GetComponent<Light>().enabled = true;
+            cover.GetComponent<Light>().color = new Color(1, 1, 1);
+        }
     }
 }
