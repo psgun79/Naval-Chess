@@ -45,6 +45,7 @@
      <Compile Include="Assets\Scripts\teamDeploy.cs" />
      <Compile Include="Assets\Scripts\shipInfo.cs" />
      <Compile Include="Assets\Scripts\gameTileSelection.cs" />
+     <Compile Include="Assets\Scripts\actionRangeCalc.cs" />
      <None Include="Assets\Imported\Simple Warships\Demo Scene\ReadMe.txt" />
      <None Include="Assets\Imported\Wispy Sky\ReadMe.txt" />
     <Reference Include="UnityEngine">

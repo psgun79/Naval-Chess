@@ -6,9 +6,6 @@ public class shipInfo : MonoBehaviour
     float a = Convert.ToSingle(227.0 / 255.0);
     float b = Convert.ToSingle(89.0 / 255.0);
     float c = Convert.ToSingle(89.0 / 255.0);
-    float d = Convert.ToSingle(231.0 / 255.0);
-    float e = Convert.ToSingle(19.0 / 255.0);
-    float f = Convert.ToSingle(19.0 / 255.0);
     public int currentHealth;
     public int totalHealth;
     public int AP = 3;
@@ -53,7 +50,7 @@ public class shipInfo : MonoBehaviour
     {
         if (system.mode_attack && attackable && system.selectedInfo.type != 2 && system.selectedInfo.type != 4)
         {
-            cover.GetComponent<Light>().color = new Color(d, e, f);
+            cover.GetComponent<Light>().intensity = 10f;
         }
     }
 
@@ -61,7 +58,7 @@ public class shipInfo : MonoBehaviour
     {
         if (system.mode_attack && attackable && system.selectedInfo.type != 2 && system.selectedInfo.type != 4)
         {
-            cover.GetComponent<Light>().color = new Color(a, b, c);
+            cover.GetComponent<Light>().intensity = 5f;
         }
     }
 
@@ -72,11 +69,7 @@ public class shipInfo : MonoBehaviour
             system.UpdateMenu(this.transform.root.gameObject);
             system.menu.SetActive(true);
         }
-        else if (attackable)
-        {
-            system.Attack(this.gameObject);
-            OnDamage();
-        }
+        else if (attackable && system.selectedInfo.type != 2 && system.selectedInfo.type != 4) system.Attack(this.gameObject);
     }
 
     public void OnMove(int xDel, int yDel)

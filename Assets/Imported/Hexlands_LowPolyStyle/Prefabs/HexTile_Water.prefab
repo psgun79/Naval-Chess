@@ -214,7 +214,6 @@ MonoBehaviour:
   xPos: 0
   yPos: 0
   movable: 0
-  system: {fileID: 0}
 --- !u!114 &6785844560303175212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,8 +499,8 @@ Light:
   m_Color: {r: 0, g: 1, b: 0.62352943, a: 1}
   m_Intensity: 1
   m_Range: 10
-  m_SpotAngle: 45
-  m_InnerSpotAngle: 4
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 3
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
