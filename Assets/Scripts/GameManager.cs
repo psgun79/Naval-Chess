@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour
         this.gameObject.GetComponent<boardSystem>().PutPieces(this.gameObject.GetComponent<teamDeploy>().deployment_BOTTOM);
     }
 
+    public void SceneReload()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(gameObject.scene.name);
+    }
+
     public void gameQuit()
     {
         #if UNITY_EDITOR

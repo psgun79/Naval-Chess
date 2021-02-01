@@ -53,10 +53,11 @@ public class actionRangeCalc : MonoBehaviour
                 foreach (GameObject e in enemies)
                 {
                     shipInfo enemyInfo = e.GetComponent<shipInfo>();
-                    int x_gap = Mathf.Abs(enemyInfo.xPos - system.selectedInfo.xPos);
+                    int x_gap = enemyInfo.xPos - system.selectedInfo.xPos;
                     int y_gap = Mathf.Abs(enemyInfo.yPos - system.selectedInfo.yPos);
+                    int k_1 = (system.selectedInfo.team == 0) ? 1 : -1;
                     if (y_gap != 0) continue;
-                    else if (x_gap == 2 || x_gap == 4 || x_gap == 6) system.attackable.Add(e);
+                    else if (x_gap * k_1 == 2 || x_gap * k_1 == 4 || x_gap * k_1 == 6) system.attackable.Add(e);
                 }
                 break;
             case 2:
@@ -154,7 +155,10 @@ public class actionRangeCalc : MonoBehaviour
                                 default:
                                     if (even && y_gap != -2) continue;
                                     else if (!even && y_gap != 2) continue;
-                                    else if (x_gap == -1 || x_gap == 1 || x_gap == 3) withinRange = true;
+                                    else if (system.selectedInfo.team == 0 && (x_gap == -1 || x_gap == 1 || x_gap == 3))
+                                        withinRange = true;
+                                    else if (system.selectedInfo.team == 1 && (x_gap == -3 || x_gap == -1 || x_gap == 1))
+                                        withinRange = true;
                                     break;
                             }
                             if (withinRange) {
@@ -184,40 +188,61 @@ public class actionRangeCalc : MonoBehaviour
         switch (system.selectedInfo.type)
         {
             case 1:
+                Transform option_4 = null;
+                Transform option_5 = null;
+                Transform option_6 = null;
                 if (even)
                 {
                     if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos - 1)
                     && OccupationCheck(system.selectedInfo.xPos + 2 * k, system.selectedInfo.yPos - 1))
-                        option_1 = system.board.transform.Find(x_plus_two).Find(y_minus_one);
+                        option_4 = system.board.transform.Find(x_plus_two).Find(y_minus_one);
                     if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos)
                     && OccupationCheck(system.selectedInfo.xPos + 2 * k, system.selectedInfo.yPos + 1))
-                        option_3 = system.board.transform.Find(x_plus_two).Find(y_plus_one);
+                        option_6 = system.board.transform.Find(x_plus_two).Find(y_plus_one);
+                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos - 1))
+                        option_1 = system.board.transform.Find(x_plus_one).Find(y_minus_one);
+                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos))
+                        option_3 = system.board.transform.Find(x_plus_one).Find(y_zero);
                 }
                 else
                 {
                     if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos)
                     && OccupationCheck(system.selectedInfo.xPos + 2 * k, system.selectedInfo.yPos - 1))
-                        option_1 = system.board.transform.Find(x_plus_two).Find(y_minus_one);
+                        option_4 = system.board.transform.Find(x_plus_two).Find(y_minus_one);
                     if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos + 1)
                     && OccupationCheck(system.selectedInfo.xPos + 2 * k, system.selectedInfo.yPos + 1))
-                        option_3 = system.board.transform.Find(x_plus_two).Find(y_plus_one);
+                        option_6 = system.board.transform.Find(x_plus_two).Find(y_plus_one);
+                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos))
+                        option_1 = system.board.transform.Find(x_plus_one).Find(y_zero);
+                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos + 1))
+                        option_3 = system.board.transform.Find(x_plus_one).Find(y_plus_one);
                 }
                 if (OccupationCheck(system.selectedInfo.xPos + 2 * k, system.selectedInfo.yPos, true)
                 && OccupationCheck(system.selectedInfo.xPos + 4 * k, system.selectedInfo.yPos, true))
-                    option_2 = system.board.transform.Find(x_plus_four).Find(y_zero);
+                    option_5 = system.board.transform.Find(x_plus_four).Find(y_zero);
+                if (OccupationCheck(system.selectedInfo.xPos + 2 * k, system.selectedInfo.yPos, true))
+                    option_2 = system.board.transform.Find(x_plus_two).Find(y_zero);
+                if (option_4 != null) system.movable.Add(option_4.gameObject);
+                if (option_5 != null) system.movable.Add(option_5.gameObject);
+                if (option_6 != null) system.movable.Add(option_6.gameObject);
                 break;
             default:
                 if (even)
                 {
-                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos - 1)) option_1 = system.board.transform.Find(x_plus_one).Find(y_minus_one);
-                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos)) option_3 = system.board.transform.Find(x_plus_one).Find(y_zero);
+                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos - 1))
+                        option_1 = system.board.transform.Find(x_plus_one).Find(y_minus_one);
+                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos))
+                        option_3 = system.board.transform.Find(x_plus_one).Find(y_zero);
                 }
                 else
                 {
-                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos)) option_1 = system.board.transform.Find(x_plus_one).Find(y_zero);
-                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos + 1)) option_3 = system.board.transform.Find(x_plus_one).Find(y_plus_one);
+                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos))
+                        option_1 = system.board.transform.Find(x_plus_one).Find(y_zero);
+                    if (OccupationCheck(system.selectedInfo.xPos + k, system.selectedInfo.yPos + 1))
+                        option_3 = system.board.transform.Find(x_plus_one).Find(y_plus_one);
                 }
-                if (OccupationCheck(system.selectedInfo.xPos + 2 * k, system.selectedInfo.yPos, true)) option_2 = system.board.transform.Find(x_plus_two).Find(y_zero);
+                if (OccupationCheck(system.selectedInfo.xPos + 2 * k, system.selectedInfo.yPos, true))
+                    option_2 = system.board.transform.Find(x_plus_two).Find(y_zero);
                 break;
         }
         if (option_1 != null) system.movable.Add(option_1.gameObject);
@@ -228,6 +253,7 @@ public class actionRangeCalc : MonoBehaviour
     bool OccupationCheck(int x, int y, bool straight = false)
     {
         if ((x == 0 || x == 32) && y == 3) return false;
+        else if (x < 0 || x > 32 || y < 0 || (x % 2 == 0 && y > 6) || (x % 2 == 1 && y > 5)) return false;
         int len = system.selectedInfo.len;
         int k = (system.selectedInfo.team == 0) ? -2 : 2; 
         foreach (GameObject s in system.ships_TOP)

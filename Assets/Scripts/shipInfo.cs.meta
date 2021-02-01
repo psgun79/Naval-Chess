@@ -3,7 +3,15 @@ guid: a3f9d24dd415baa4d9d8d7d9a534d978
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - icon: {instanceID: 0}
+  - currentHealthBar: {instanceID: 0}
+  - totalHealthBar: {instanceID: 0}
+  - healthCanvas: {instanceID: 0}
+  - cover: {instanceID: 0}
+  - health_0: {fileID: 21300000, guid: d2aab8d4acd59964a82a0f32c2b85bd7, type: 3}
+  - health_1: {fileID: 21300000, guid: afe7450a314c67d4daf98bda4405748a, type: 3}
+  - health_2: {fileID: 21300000, guid: 86f328f9201f09249b8ccac0c77bb074, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

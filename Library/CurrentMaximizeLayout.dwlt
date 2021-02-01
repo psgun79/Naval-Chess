@@ -221,16 +221,16 @@ MonoBehaviour:
   m_WindowGUID: 2cba4dc6402143a4b8fabc2a1d466ea0
   m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
-  m_SceneIsLit: 1
+  m_SceneIsLit: 0
   m_SceneLighting: 1
   m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 6.375584, y: -11.073781, z: 48.00249}
+    m_Target: {x: 0.009339362, y: 0.3222565, z: 4.5}
     speed: 2
-    m_Value: {x: 6.375584, y: -11.073781, z: 48.00249}
+    m_Value: {x: 0.009339362, y: 0.3222565, z: 4.5}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -277,13 +277,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.12597193, y: 0.020898795, z: -0.0016953313, w: 0.99196094}
+    m_Target: {x: -0.18571532, y: -0.20610766, z: 0.03985969, w: -0.95994437}
     speed: 2
-    m_Value: {x: 0.12595336, y: 0.020895714, z: -0.0016950814, w: 0.9918147}
+    m_Value: {x: -0.18571045, y: -0.20610225, z: 0.039858643, w: -0.9599192}
   m_Size:
-    m_Target: 23.129745
+    m_Target: 0.5115819
     speed: 2
-    m_Value: 23.129745
+    m_Value: 0.5115819
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -301,7 +301,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LastSceneViewRotation: {x: 0.2166172, y: -0.699917, z: 0.23953356, w: 0.63727033}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -426,10 +426,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 750}
-      m_SelectedIDs: 6a78ffff
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: b23f0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 7671ffffb077ffff6a78ffff96f2fffffef4ffff9cf9ffff56fbffff703a0000c63d0000703e0000783e000018410000c0410000
+      m_ExpandedIDs: 56fbffffbc3a00004c3c00008a3e0000e43e0000a4440000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -607,22 +607,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 71
   m_LastFolders:
-  - Assets
+  - Assets/Prefabs
   m_LastFoldersGridSize: 71
   m_LastProjectPath: D:\DOCUMENTS\Naval Chess
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 46}
-    m_SelectedIDs: a8530000
-    m_LastClickedID: 21416
-    m_ExpandedIDs: 00000000a8530000aa530000ac53000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 7c540000
+    m_LastClickedID: 21628
+    m_ExpandedIDs: 00000000705400007254000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -650,7 +650,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a8530000aa530000ac53000000ca9a3b
+    m_ExpandedIDs: 00000000705400007254000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -675,8 +675,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 6a78ffff
-    m_LastClickedInstanceID: -34710
+    m_SelectedInstanceIDs: b23f0000
+    m_LastClickedInstanceID: 16306
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300001a400000463f00003a4d00004e4d0000843f0000143b0000763b00002a3d0000703b0000e6460000fa590000f246000000000000
     m_RenameOverlay:

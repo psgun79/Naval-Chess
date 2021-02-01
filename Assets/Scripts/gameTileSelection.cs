@@ -3,10 +3,10 @@ using System;
 
 public class gameTileSelection : MonoBehaviour
 {
-    float a = 0;
-    float b = 1f;
-    float c = Convert.ToSingle(159.0 / 255.0);
-    public GameObject cover;
+    public Material normal;
+    public Material highlight_off;
+    public Material highlight_on;
+    public MeshRenderer cover;
     public int xPos;
     public int yPos;
     public bool movable = false;
@@ -21,36 +21,37 @@ public class gameTileSelection : MonoBehaviour
 
     public void HoverEnter()
     {
-        if (system.mode_move && movable)
-        {
-            cover.GetComponent<Light>().color = new Color(1, 1, 1);
-        }
+        if (system.mode_move && movable) highlightOn();
     }
 
     public void HoverExit()
     {
-        if (system.mode_move && movable)
-        {
-            cover.GetComponent<Light>().color = new Color(a, b, c);
-        }
+        if (system.mode_move && movable) highlightOff();
     }
 
     public void Click()
     {
-        if (system.mode_move && movable)
-        {
-            system.Move(xPos, yPos);
-            cover.GetComponent<Light>().color = new Color(a, b, c);
-        }
+        if (system.mode_move && movable) system.Move(xPos, yPos);
     }
 
-    void Update()
+    public void highlightOn()
     {
-        if (!system.mode_move)
-        {
-            cover.GetComponent<Light>().enabled = false;
-            movable = false;
-        }
-        else if (movable) cover.GetComponent<Light>().enabled = true;
+        Material[] materials = cover.materials;
+        materials[0] = highlight_on;
+        cover.materials = materials;
+    }
+
+    public void highlightOff()
+    {
+        Material[] materials = cover.materials;
+        materials[0] = highlight_off;
+        cover.materials = materials;
+    }
+
+    public void highlightDisabled()
+    {
+        Material[] materials = cover.materials;
+        materials[0] = normal;
+        cover.materials = materials;
     }
 }

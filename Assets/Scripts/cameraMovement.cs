@@ -8,14 +8,16 @@ public class cameraMovement : MonoBehaviour
     float upperBound = Screen.height * 3 / 4;
     public float speed = 0f;
     float acceleration = 0.0005f;
-    float threshold = 0.00005f;
+    float threshold = 0.0003f;
     float direction;
     public bool sniping;
+    public bool gameOver = false;
     public boardSystem system;
     public GameObject menu;
 
     void Update()
     {
+        if (gameOver) return;
         if (sniping) y_origin = 8.5f;
         else
         {
@@ -32,11 +34,11 @@ public class cameraMovement : MonoBehaviour
         float yPos = Input.mousePosition.y;
         if (yPos >= upperBound || yPos <= lowerBound)
         {
-            if (yPos >= upperBound && transform.position.x <= 0.125)
+            if (yPos >= upperBound && transform.position.x <= 0.1)
             {
                 speed = 0;
             }
-            else if (yPos <= lowerBound && transform.position.x >= 13.875)
+            else if (yPos <= lowerBound && transform.position.x >= 13.7)
             {
                 speed = 0;
             }
@@ -57,17 +59,17 @@ public class cameraMovement : MonoBehaviour
             if (speed > 0)
             {
                 speed -= acceleration;
-                if (speed > 0 && transform.position.x + speed >= 13.875) speed = 0;
+                if (speed > 0 && transform.position.x + speed >= 13.856) speed = 0;
             }
             else if (speed < 0)
             {
                 speed += acceleration;
-                if (speed < 0 && transform.position.x + speed <= 0.125) speed = 0;
+                if (speed < 0 && transform.position.x + speed <= 0) speed = 0;
             }
             else return;
             transform.Translate(0, speed, 0);
         }
-        if (transform.position.x <= 0.125f) transform.position = new Vector3(0.125f, y_origin, z_origin);
-        else if (transform.position.x >= 13.875) transform.position = new Vector3(13.875f, y_origin, z_origin);
+        if (transform.position.x <= 0) transform.position = new Vector3(0, y_origin, z_origin);
+        else if (transform.position.x >= 13.856) transform.position = new Vector3(13.856f, y_origin, z_origin);
     }
 }
