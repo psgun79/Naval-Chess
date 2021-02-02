@@ -17,7 +17,7 @@ public class teamDeploy : MonoBehaviour
     public int selected = -1;
     public List<Transform> icons = new List<Transform>();
     public List<Text> texts = new List<Text>();
-    public List<GameObject> arrows = new List<GameObject>();
+    public List<GameObject> buttons = new List<GameObject>();
     public GameObject scriptOnly;
     public GameObject message;
     public GameObject board;
@@ -79,9 +79,8 @@ public class teamDeploy : MonoBehaviour
         s.GetComponent<shipInfo>().yPos = yPos;
         s.GetComponent<shipInfo>().type = selected;
         s.GetComponent<shipInfo>().team = team;
-        var coordinates = Position(xPos, yPos, selected);
         s.GetComponent<shipInfo>().icon = Instantiate(icons[selected], board.transform, false);
-        s.GetComponent<shipInfo>().icon.localPosition = new Vector3(coordinates.Item1, coordinates.Item2, 0);
+        s.GetComponent<shipInfo>().icon.localPosition = Position(xPos, yPos, selected);
         ships_deployed.Add(s);
         ships[team, selected]--;
         LightOff(selected);
@@ -115,33 +114,37 @@ public class teamDeploy : MonoBehaviour
         UpdateCount();
     }
 
-    (float, float) Position(int xPos, int yPos, int type)
+    Vector3 Position(int xPos, int yPos, int type)
     {
         float x, y, k;
-        if (type == 4) k = Convert.ToSingle(-49.5);
-        else if (type == 2 || type == 3) k = Convert.ToSingle(-24.75);
+        if (type == 4) k = Convert.ToSingle(-35.2);
+        else if (type == 2 || type == 3) k = Convert.ToSingle(-17.6);
         else k = 0;
         if (xPos % 2 == 0)
         {
-            x = Convert.ToSingle((yPos * 90) - 129);
-            y = Convert.ToSingle((xPos / 2 * 49.5) - 59 + k);
+            x = Convert.ToSingle((yPos * 67.9) - 203.7);
+            y = Convert.ToSingle((xPos / 2 * 35.2) - 120 + k);
         }
         else
         {
-            x = Convert.ToSingle((yPos * 90) - 84);
-            y = Convert.ToSingle(((xPos - 1) / 2 * 49.5) - 34.25 + k);
+            x = Convert.ToSingle((yPos * 67.9) - 169.8);
+            y = Convert.ToSingle(((xPos - 1) / 2 * 35.2) - 102.4 + k);
         }
-        return (x, y);
+        Vector3 cell_pos = new Vector3();
+        cell_pos.x = x;
+        cell_pos.y = y;
+        cell_pos.z = 0;
+        return cell_pos;
     }
 
     void LightOn(int type)
     {
-        arrows[type].SetActive(true);
+        buttons[type].GetComponent<Image>().color = new Color(1, 1, 1);
     }
 
     void LightOff(int type)
     {
-        arrows[type].SetActive(false);
+        buttons[type].GetComponent<Image>().color = new Color(0, Convert.ToSingle(134.0 / 255.0), 1);
     }
 
     public void Finish()

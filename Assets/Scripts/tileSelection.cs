@@ -6,14 +6,20 @@ public class tileSelection : MonoBehaviour
 {
     public int xPos;
     public int yPos;
-    float a = Convert.ToSingle(160.0 / 255.0);
-    float b = Convert.ToSingle(205.0 / 255.0);
-    float c = Convert.ToSingle(199.0 / 255.0);
+    Color locked = new Color(Convert.ToSingle(84.0 / 255.0), Convert.ToSingle(113.0 / 255.0), Convert.ToSingle(204.0 / 255.0));
+    Color locked_highlight = new Color(Convert.ToSingle(27.0 / 255.0), Convert.ToSingle(120.0 / 255.0), 1);
+    Color highlight = new Color(0, Convert.ToSingle(200.0 / 255.0), 1);
     public teamDeploy system;
+
+    void Start()
+    {
+        yPos = Convert.ToInt32(this.gameObject.name.Substring(5)) - 1;
+        xPos = Convert.ToInt32(this.transform.parent.gameObject.name.Substring(4)) - 1;
+    }
 
     public void HoverEnter()
     {
-        if (system.selected != -1) this.gameObject.GetComponent<Image>().color = new Color(a, b, c);
+        if (system.selected != -1) this.gameObject.GetComponent<Image>().color = highlight;
     }
 
     public void HoverExit()
