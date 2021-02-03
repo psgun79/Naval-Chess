@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Camera canvasCamera;
+    public Camera boardCamera;
+    public Material inGameSkybox;
     public Canvas startingScreen;
     public Canvas teamUpScreen;
     public Canvas deployScreen;
@@ -25,6 +28,8 @@ public class GameManager : MonoBehaviour
     public void gameStart()
     {
         deployScreen.gameObject.SetActive(false);
+        canvasCamera.gameObject.SetActive(false);
+        boardCamera.gameObject.AddComponent<Skybox>().material = inGameSkybox;
         gameboard.SetActive(true);
         HUD.gameObject.SetActive(true);
         this.gameObject.GetComponent<boardSystem>().PutPieces(this.gameObject.GetComponent<teamDeploy>().deployment_TOP);

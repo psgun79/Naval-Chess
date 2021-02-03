@@ -144,7 +144,7 @@ public class boardSystem : MonoBehaviour
         mainCamera.gameObject.GetComponent<cameraMovement>().sniping = false;
         mode_attack = false;
         mode_move = false;
-        selectedInfo.selected = false;
+        if (selectedInfo != null) selectedInfo.selected = false;
         menu.SetActive(false);
     }
 
@@ -167,14 +167,19 @@ public class boardSystem : MonoBehaviour
         mode_move = false;
         calc.attackRangeCalculation();
         calc.moveRangeCalculation();
-        if (attackable.Count == 0 || selectedInfo.AP == 0 || selectedInfo.attackCount > 0) attack_unable.SetActive(true); else attack_unable.SetActive(false);
+        if (attackable.Count == 0 || selectedInfo.AP == 0 || selectedInfo.attackCount > 0) attack_unable.SetActive(true);
+        else 
+        {
+            attack_unable.SetActive(false);
+            if (selectedInfo.type == 2 || selectedInfo.type == 4)
+            {
+                foreach (GameObject ship in attackable) ship.GetComponent<shipInfo>().attackable = true;
+                mode_attack = true;
+            }
+        }
         if (movable.Count == 0 || selectedInfo.AP == 0) move_unable.SetActive(true); else move_unable.SetActive(false);
         attack_pending.SetActive(false);
         move_pending.SetActive(false);
-        if (selectedInfo.type == 2 || selectedInfo.type == 4)
-        {
-            foreach (GameObject ship in attackable) ship.GetComponent<shipInfo>().attackable = true;
-            mode_attack = true;
-        }
+
     }
 }

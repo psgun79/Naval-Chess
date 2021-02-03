@@ -10,7 +10,7 @@ public class teamDeploy : MonoBehaviour
     public List<GameObject> deployment_TOP;
     public List<GameObject> deployment_BOTTOM;
     public Text team_text;
-    int team = 0;
+    public int team = 0;
     int cnt;
     public int[,] ships;
     public int[,,] lock_table = new int[9, 7, 2];
@@ -44,6 +44,8 @@ public class teamDeploy : MonoBehaviour
         int tmp = 0;
         for (int i = 0; i < ships.GetLength(1); i++)
         {
+            if (ships[team, i] == 0) buttons[i].GetComponent<ButtonUpdate>().Lock();
+            else buttons[i].GetComponent<ButtonUpdate>().LightOff();
             texts[i].GetComponent<Text>().text = ships[team, i].ToString();
             tmp += ships[team, i];
         }
@@ -55,17 +57,17 @@ public class teamDeploy : MonoBehaviour
         if (selected == -1 && ships[team, type] > 0)
         {
             selected = type;
-            LightOn(selected);
+            buttons[type].GetComponent<ButtonUpdate>().LightOn();
         }
         else if (selected != type && ships[team, type] > 0)
         {
-            LightOff(selected);
+            buttons[selected].GetComponent<ButtonUpdate>().LightOff();
             selected = type;
-            LightOn(selected);
+            buttons[selected].GetComponent<ButtonUpdate>().LightOn();
         }
         else
         {
-            if (selected != -1) LightOff(selected);
+            if (selected != -1) buttons[type].GetComponent<ButtonUpdate>().LightOff();
             selected = -1;
         }
     }
@@ -83,7 +85,6 @@ public class teamDeploy : MonoBehaviour
         s.GetComponent<shipInfo>().icon.localPosition = Position(xPos, yPos, selected);
         ships_deployed.Add(s);
         ships[team, selected]--;
-        LightOff(selected);
         UpdateCount();
     }
 
@@ -137,16 +138,6 @@ public class teamDeploy : MonoBehaviour
         return cell_pos;
     }
 
-    void LightOn(int type)
-    {
-        buttons[type].GetComponent<Image>().color = new Color(1, 1, 1);
-    }
-
-    void LightOff(int type)
-    {
-        buttons[type].GetComponent<Image>().color = new Color(0, Convert.ToSingle(134.0 / 255.0), 1);
-    }
-
     public void Finish()
     {
         if (cnt != 0)
@@ -157,7 +148,8 @@ public class teamDeploy : MonoBehaviour
         {
             message.SetActive(false);
             team++;
-            team_text.GetComponent<Text>().text = "<color=#0000ffff>BOTTOM</color>";
+            team_text.GetComponent<Text>().text = "BOTTOM";
+            team_text.GetComponent<Text>().color = new Color(0, Convert.ToSingle(29.0 / 255.0), Convert.ToSingle(144.0 / 255.0));
             deployment_TOP = ships_deployed.ToList();
             Remove(0, 0, 1);
             ships_deployed = new List<GameObject>();

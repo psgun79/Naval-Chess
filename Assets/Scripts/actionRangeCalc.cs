@@ -76,19 +76,19 @@ public class actionRangeCalc : MonoBehaviour
                         for (int j = 0; j < targetInfo.len; j++)
                         {
                             int x = targetInfo.xPos + k_2 * j;
-                            int x_gap = x - system.selectedInfo.xPos;
+                            int x_gap = (x - system.selectedInfo.xPos) * (-k) / 2;
                             switch (y_gap)
                             {
                                 case 0:
-                                    if (Mathf.Abs(x_gap) <= 4) withinRange = true;
+                                    if (-4 <= x_gap && x_gap <= 6) withinRange = true;
                                     break;
                                 case -1:
-                                    if (even && Mathf.Abs(x_gap) <= 3) withinRange = true;
-                                    else if (!even && (x_gap == 0 || Mathf.Abs(x_gap) == 2)) withinRange = true;
+                                    if (even && -3 <= x_gap && x_gap <= 5) withinRange = true;
+                                    else if (!even && (x_gap == 0 || Mathf.Abs(x_gap) == 2 || x_gap == 4)) withinRange = true;
                                     break;
                                 default:
-                                    if (even && y_gap != -1) continue;
-                                    else if (!even && y_gap == 1 && Mathf.Abs(x_gap) <= 3) withinRange = true;
+                                    if (even && y_gap == 1 && (x_gap == 0 || Mathf.Abs(x_gap) == 2 || x_gap == 4)) withinRange = true;
+                                    else if (!even && y_gap == 1 && -3 <= x_gap && x_gap <= 5) withinRange = true;
                                     break;
                             }
                             if (withinRange) {
@@ -138,19 +138,19 @@ public class actionRangeCalc : MonoBehaviour
                         for (int j = 0; j < targetInfo.len; j++)
                         {
                             int x = targetInfo.xPos + k_4 * j;
-                            int x_gap = x - system.selectedInfo.xPos;
+                            int x_gap = (x - system.selectedInfo.xPos) * (-k) / 2;
                             switch (y_gap)
                             {
                                 case 0:
-                                    if (-4 <= x_gap && x_gap <= 1) withinRange = true;
+                                    if (-1 <= x_gap && x_gap <= 4) withinRange = true;
                                     break;
                                 case -1:
-                                    if (even && -3 <= x_gap && x_gap <= 2) withinRange = true;
-                                    else if (!even && -2 <= x_gap && x_gap <= 3) withinRange = true;
-                                    break;
-                                case 1:
                                     if (even && -2 <= x_gap && x_gap <= 3) withinRange = true;
                                     else if (!even && -3 <= x_gap && x_gap <= 2) withinRange = true;
+                                    break;
+                                case 1:
+                                    if (even && -3 <= x_gap && x_gap <= 2) withinRange = true;
+                                    else if (!even && -2 <= x_gap && x_gap <= 3) withinRange = true;
                                     break;
                                 default:
                                     if (even && y_gap != -2) continue;

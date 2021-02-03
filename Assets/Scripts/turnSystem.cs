@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,8 @@ public class turnSystem : MonoBehaviour
     public boardSystem system;
     public Text team;
     public Text totalAP_text;
+    public Image AP_image;
+    public Camera canvasCamera;
     public Camera mainCamera;
     public Canvas gameOverCanvas;
     public GameObject win_TOP;
@@ -20,6 +23,7 @@ public class turnSystem : MonoBehaviour
     public void SwitchTurn()
     {
         if (turn == 0) turn = 1; else turn = 0;
+        system.CancelButtonClick();
         MonitorUpdate();
     }
 
@@ -30,6 +34,8 @@ public class turnSystem : MonoBehaviour
         if (turn == 0)
         {
             team.text = "TOP";
+            team.color = new Color(Convert.ToSingle(202.0 / 255.0), Convert.ToSingle(45.0 / 255.0), Convert.ToSingle(45.0 / 255.0));
+            AP_image.color = new Color(Convert.ToSingle(202.0 / 255.0), Convert.ToSingle(45.0 / 255.0), Convert.ToSingle(45.0 / 255.0));
             light_TOP.SetActive(true);
             light_BOTTOM.SetActive(false);
             foreach (GameObject ship in system.ships_TOP)
@@ -41,6 +47,8 @@ public class turnSystem : MonoBehaviour
         else
         {
             team.text = "BOTTOM";
+            team.color = new Color(0, Convert.ToSingle(29.0 / 255.0), Convert.ToSingle(144.0 / 255.0));
+            AP_image.color = new Color(0, Convert.ToSingle(29.0 / 255.0), Convert.ToSingle(144.0 / 255.0));
             light_TOP.SetActive(false);
             light_BOTTOM.SetActive(true);
             foreach (GameObject ship in system.ships_BOTTOM)
@@ -59,8 +67,10 @@ public class turnSystem : MonoBehaviour
         {
             system.monitor.SetActive(false);
             system.menu.SetActive(false);
+            mainCamera.gameObject.SetActive(false);
+            canvasCamera.gameObject.SetActive(true);
             gameOverCanvas.gameObject.SetActive(true);
-            mainCamera.GetComponent<cameraMovement>().gameOver = true;
+            //mainCamera.GetComponent<cameraMovement>().gameOver = true;
             if (winCondition == 0) win_TOP.SetActive(true); else win_BOTTOM.SetActive(true);
         }
         else if (totalAP == 0) SwitchTurn();

@@ -1,15 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class teamOrganize : MonoBehaviour
 {
-    int team = 0;
+    public int team = 0;
     int cnt = 0;
     int budget = 15;
-    int money = 15;
+    public int money = 15;
     public int[,] ships = new int[,] {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}};
-    int[] limit = new int[] {7, 4, 4, 2, 1};
-    int[] cost = new int[] {1, 2, 2, 3, 5};
+    public int[] limit = new int[] {7, 4, 4, 2, 1};
+    public int[] cost = new int[] {1, 2, 2, 3, 5};
     public Text count_0;
     public Text count_1;
     public Text count_2;
@@ -71,7 +72,8 @@ public class teamOrganize : MonoBehaviour
             money = budget;
             cnt = 0;
             team = 1;
-            team_text.GetComponent<Text>().text = "<color=#0000ffff>BOTTOM</color>";
+            team_text.GetComponent<Text>().text = "BOTTOM";
+            team_text.GetComponent<Text>().color = new Color(0, Convert.ToSingle(29.0 / 255.0), Convert.ToSingle(144.0 / 255.0));
             UpdateCount();
         }
         else

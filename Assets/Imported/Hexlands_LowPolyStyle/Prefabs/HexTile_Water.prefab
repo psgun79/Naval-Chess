@@ -210,8 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normal: {fileID: 2100000, guid: cb38cccad6f2d31449b8a5712cab1bfa, type: 2}
-  highlight_off: {fileID: 2100000, guid: 0413ccbc5c129b544992436d8e6e41b5, type: 2}
-  highlight_on: {fileID: 2100000, guid: 08551fdaf90218247b4e735417a6dce0, type: 2}
+  highlight_off: {fileID: 2100000, guid: d039fca7aaf910d46809dd254aeeefb7, type: 2}
+  highlight_on: {fileID: 2100000, guid: 2f2fdfb5cf489704ca094dd1b38812f4, type: 2}
   cover: {fileID: 23726385167936834}
   xPos: 0
   yPos: 0

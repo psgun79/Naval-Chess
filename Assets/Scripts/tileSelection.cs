@@ -6,8 +6,6 @@ public class tileSelection : MonoBehaviour
 {
     public int xPos;
     public int yPos;
-    Color locked = new Color(Convert.ToSingle(84.0 / 255.0), Convert.ToSingle(113.0 / 255.0), Convert.ToSingle(204.0 / 255.0));
-    Color locked_highlight = new Color(Convert.ToSingle(27.0 / 255.0), Convert.ToSingle(120.0 / 255.0), 1);
     Color highlight = new Color(0, Convert.ToSingle(200.0 / 255.0), 1);
     public teamDeploy system;
 
