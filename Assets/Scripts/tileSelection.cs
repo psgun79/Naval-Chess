@@ -11,6 +11,7 @@ public class tileSelection : MonoBehaviour
 
     void Start()
     {
+        system = GameObject.Find("Game Manager").GetComponent<teamDeploy>();
         yPos = Convert.ToInt32(this.gameObject.name.Substring(5)) - 1;
         xPos = Convert.ToInt32(this.transform.parent.gameObject.name.Substring(4)) - 1;
     }

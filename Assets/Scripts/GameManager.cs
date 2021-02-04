@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -5,12 +6,26 @@ public class GameManager : MonoBehaviour
     public Camera canvasCamera;
     public Camera boardCamera;
     public Material inGameSkybox;
+    public Canvas infoScreen;
     public Canvas startingScreen;
     public Canvas teamUpScreen;
     public Canvas deployScreen;
     public Canvas HUD;
     public GameObject gameboard;
+    public List<AudioSource> musicList;
 
+    public void openHowToPlay()
+    {
+        startingScreen.gameObject.SetActive(false);
+        infoScreen.gameObject.SetActive(true);
+    }
+
+    public void closeHowToPlay()
+    {
+        infoScreen.gameObject.SetActive(false);
+        startingScreen.gameObject.SetActive(true);
+    }
+    
     public void teamUpStart()
     {
         startingScreen.gameObject.SetActive(false);
@@ -31,6 +46,7 @@ public class GameManager : MonoBehaviour
         canvasCamera.gameObject.SetActive(false);
         boardCamera.gameObject.AddComponent<Skybox>().material = inGameSkybox;
         gameboard.SetActive(true);
+        musicList[Random.Range(0, 5)].Play();
         HUD.gameObject.SetActive(true);
         this.gameObject.GetComponent<boardSystem>().PutPieces(this.gameObject.GetComponent<teamDeploy>().deployment_TOP);
         this.gameObject.GetComponent<boardSystem>().PutPieces(this.gameObject.GetComponent<teamDeploy>().deployment_BOTTOM);
