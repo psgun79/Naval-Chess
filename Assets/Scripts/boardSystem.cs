@@ -6,6 +6,7 @@ public class boardSystem : MonoBehaviour
 {
     public actionRangeCalc calc;
     public turnSystem system;
+    public List<AudioSource> SFXList;
     public List<GameObject> prefabs_TOP = new List<GameObject>();
     public List<GameObject> prefabs_BOTTOM = new List<GameObject>();
     public List<GameObject> ships_TOP = new List<GameObject>();
@@ -15,8 +16,10 @@ public class boardSystem : MonoBehaviour
     public GameObject monitor;
     public GameObject board;
     public GameObject menu;
+    public GameObject attack_available;
     public GameObject attack_pending;
     public GameObject attack_unable;
+    public GameObject move_available;
     public GameObject move_pending;
     public GameObject move_unable;
     public shipInfo selectedInfo;
@@ -77,6 +80,10 @@ public class boardSystem : MonoBehaviour
 
     public void Attack(GameObject target)
     {
+        if (selectedInfo.type == 0 || selectedInfo.type == 1) SFXList[2].Play();
+        else if (selectedInfo.type == 2 || selectedInfo.type == 4) SFXList[3].Play();
+        else SFXList[4].Play();
+        foreach (ParticleSystem p in selectedInfo.attackFXs) p.Play();
         mainCamera.gameObject.GetComponent<cameraMovement>().sniping = false;
         target.GetComponent<shipInfo>().OnDamage();
         selectedInfo.AP--;
@@ -115,6 +122,7 @@ public class boardSystem : MonoBehaviour
 
     public void Move(int x, int y)
     {
+        SFXList[5].Play();
         foreach (GameObject tile in movable)
         {
             tile.GetComponent<gameTileSelection>().movable = false;
@@ -154,11 +162,11 @@ public class boardSystem : MonoBehaviour
         selectedInfo.selected = true;
         switch (selectedInfo.type)
         {
-            case 0: selectedType.text = "CORVETTE"; break;
-            case 1: selectedType.text = "FRIGATE"; break;
-            case 2: selectedType.text = "DESTROYER"; break;
-            case 3: selectedType.text = "CRUISER"; break;
-            default: selectedType.text = "BATTLESHIP"; break;
+            case 0: selectedType.text = "CORVETTE"; SFXList[0].Play(); break;
+            case 1: selectedType.text = "FRIGATE"; SFXList[0].Play(); break;
+            case 2: selectedType.text = "DESTROYER"; SFXList[1].Play(); break;
+            case 3: selectedType.text = "CRUISER"; SFXList[1].Play(); break;
+            default: selectedType.text = "BATTLESHIP"; SFXList[1].Play(); break;
         }
         selectedAP.text = selectedInfo.AP.ToString();
         attackable.Clear();
@@ -167,9 +175,14 @@ public class boardSystem : MonoBehaviour
         mode_move = false;
         calc.attackRangeCalculation();
         calc.moveRangeCalculation();
-        if (attackable.Count == 0 || selectedInfo.AP == 0 || selectedInfo.attackCount > 0) attack_unable.SetActive(true);
+        if (attackable.Count == 0 || selectedInfo.AP == 0 || selectedInfo.attackCount > 0)
+        {
+            attack_available.SetActive(false);
+            attack_unable.SetActive(true);
+        }
         else 
         {
+            attack_available.SetActive(true);
             attack_unable.SetActive(false);
             if (selectedInfo.type == 2 || selectedInfo.type == 4)
             {
@@ -177,9 +190,17 @@ public class boardSystem : MonoBehaviour
                 mode_attack = true;
             }
         }
-        if (movable.Count == 0 || selectedInfo.AP == 0) move_unable.SetActive(true); else move_unable.SetActive(false);
+        if (movable.Count == 0 || selectedInfo.AP == 0)
+        {
+            move_available.SetActive(false);
+            move_unable.SetActive(true);
+        }
+        else
+        {
+            move_available.SetActive(true);
+            move_unable.SetActive(false);
+        }
         attack_pending.SetActive(false);
         move_pending.SetActive(false);
-
     }
 }

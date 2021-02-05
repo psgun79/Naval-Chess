@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class turnSystem : MonoBehaviour
 {
+    public GameManager gm;
     public boardSystem system;
     public Text team;
     public Text totalAP_text;
@@ -70,7 +71,8 @@ public class turnSystem : MonoBehaviour
             mainCamera.gameObject.SetActive(false);
             canvasCamera.gameObject.SetActive(true);
             gameOverCanvas.gameObject.SetActive(true);
-            //mainCamera.GetComponent<cameraMovement>().gameOver = true;
+            gm.musicList[gm.trackNum].Stop();
+            gm.musicList[0].Play();
             if (winCondition == 0) win_TOP.SetActive(true); else win_BOTTOM.SetActive(true);
         }
         else if (totalAP == 0) SwitchTurn();

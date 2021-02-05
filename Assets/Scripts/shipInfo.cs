@@ -1,9 +1,13 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class shipInfo : MonoBehaviour
 {
+    public List<ParticleSystem> attackFXs;
+    public List<ParticleSystem> FXs;
     float a = Convert.ToSingle(227.0 / 255.0);
     float b = Convert.ToSingle(89.0 / 255.0);
     float c = Convert.ToSingle(89.0 / 255.0);
@@ -104,9 +108,18 @@ public class shipInfo : MonoBehaviour
         float ratio = Convert.ToSingle(currentHealth) / Convert.ToSingle(totalHealth);
         currentHealthBar.sizeDelta = new Vector2(currentHealthBar.sizeDelta.x, 0.5f * ratio);
         healthCanvas.gameObject.SetActive(true);
-        if (currentHealth == 1) currentHealthBar.GetComponent<Image>().sprite = health_2;
-        else if (ratio <= 0.5f) currentHealthBar.GetComponent<Image>().sprite = health_1;
-        if (currentHealth <= 0) OnDeath();
+        if (currentHealth == 1)
+        {
+            FXs[0].Play();
+            FXs[1].Play();
+            currentHealthBar.GetComponent<Image>().sprite = health_2;
+        }
+        else if (ratio <= 0.5f)
+        {
+            FXs[0].Play();
+            currentHealthBar.GetComponent<Image>().sprite = health_1;
+        }
+        if (currentHealth <= 0) OnDeath(); else FXs[2].Play();
     }
 
     public void OnDeath()
@@ -134,6 +147,20 @@ public class shipInfo : MonoBehaviour
                     break;
                 }
             }
+        }
+        system_1.SFXList[6].Play();
+        FXs[3].Play();
+        StartCoroutine("Sink");
+    }
+
+    IEnumerator Sink()
+    {
+        Vector3 deltaPos = new Vector3(0, -0.6f, 0);
+        float timePassed = 0;
+        while (timePassed < 15.0f) {
+            timePassed += Time.deltaTime; 
+            transform.position += deltaPos * Time.deltaTime;
+            yield return null;
         }
         Destroy(this.gameObject);
     }

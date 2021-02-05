@@ -11,13 +11,11 @@ public class cameraMovement : MonoBehaviour
     float threshold = 0.0003f;
     float direction;
     public bool sniping;
-    public bool gameOver = false;
     public boardSystem system;
     public GameObject menu;
 
     void Update()
     {
-        if (gameOver) return;
         if (sniping) y_origin = 8.5f;
         else
         {

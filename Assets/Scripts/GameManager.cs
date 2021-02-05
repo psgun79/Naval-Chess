@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Canvas HUD;
     public GameObject gameboard;
     public List<AudioSource> musicList;
+    public int trackNum;
 
     public void openHowToPlay()
     {
@@ -46,7 +47,9 @@ public class GameManager : MonoBehaviour
         canvasCamera.gameObject.SetActive(false);
         boardCamera.gameObject.AddComponent<Skybox>().material = inGameSkybox;
         gameboard.SetActive(true);
-        musicList[Random.Range(0, 5)].Play();
+        musicList[0].Stop();
+        trackNum = Random.Range(1, 5);
+        musicList[trackNum].Play();
         HUD.gameObject.SetActive(true);
         this.gameObject.GetComponent<boardSystem>().PutPieces(this.gameObject.GetComponent<teamDeploy>().deployment_TOP);
         this.gameObject.GetComponent<boardSystem>().PutPieces(this.gameObject.GetComponent<teamDeploy>().deployment_BOTTOM);
