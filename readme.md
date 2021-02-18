@@ -28,7 +28,7 @@ This game was developed thanks to lots of senior developers who contributed thei
 - https://assetstore.unity.com/packages/vfx/particles/war-fx-5669
 ### Music
 - https://assetstore.unity.com/packages/audio/music/orchestral/free-game-music-collection-177094
-- 
+- https://assetstore.unity.com/packages/audio/music/orchestral/free-game-music-pack-176757
 ### Sound FX
 - https://assetstore.unity.com/packages/audio/sound-fx/free-sound-effects-pack-155776#content
 - https://assetstore.unity.com/packages/audio/sound-fx/grenade-sound-fx-147490
