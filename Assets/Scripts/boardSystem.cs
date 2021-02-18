@@ -16,6 +16,8 @@ public class boardSystem : MonoBehaviour
     public GameObject monitor;
     public GameObject board;
     public GameObject menu;
+    public GameObject shutdown_button;
+    public GameObject shutdown_window;
     public GameObject attack_available;
     public GameObject attack_pending;
     public GameObject attack_unable;
@@ -56,6 +58,7 @@ public class boardSystem : MonoBehaviour
 
     public void AttackButtonClick()
     {
+        QuitWindowClose();
         move_pending.SetActive(false);
         if (selectedInfo.type == 2 || selectedInfo.type == 4)
         {
@@ -97,6 +100,7 @@ public class boardSystem : MonoBehaviour
 
     public void MoveButtonClick()
     {
+        QuitWindowClose();
         attack_pending.SetActive(false);
         if (!mode_move)
         {
@@ -144,6 +148,7 @@ public class boardSystem : MonoBehaviour
 
     public void CancelButtonClick()
     {
+        QuitWindowClose();
         foreach (GameObject tile in movable)
         {
             tile.GetComponent<gameTileSelection>().movable = false;
@@ -156,8 +161,27 @@ public class boardSystem : MonoBehaviour
         menu.SetActive(false);
     }
 
+    public void QuitWindowOpen()
+    {
+        if (shutdown_button.activeSelf)
+        {
+            shutdown_button.SetActive(false);
+            shutdown_window.SetActive(true);
+        }
+    }
+
+    public void QuitWindowClose()
+    {
+        if (!shutdown_button.activeSelf)
+        {
+            shutdown_window.SetActive(false);
+            shutdown_button.SetActive(true);
+        }
+    }
+
     public void UpdateMenu(GameObject s)
     {
+        QuitWindowClose();
         selectedInfo = s.GetComponent<shipInfo>();
         selectedInfo.selected = true;
         switch (selectedInfo.type)

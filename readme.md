@@ -1,4 +1,4 @@
-# Naval Chess v1.0
+# Naval Chess v1.01
 Development period: 2021.1.24~2021.2.5
 Unity version: 2020.2.2f1
 
@@ -36,3 +36,9 @@ This game was developed thanks to lots of senior developers who contributed thei
 ### Skybox
 - https://assetstore.unity.com/packages/2d/textures-materials/sky/free-hdr-sky-61217
 - https://assetstore.unity.com/packages/2d/textures-materials/sky/wispy-skybox-21737
+
+## Updates
+
+### v1.01 (2021.2.18)
+- Fixed the problem that some images in 'How To Play' screen were not displayed.
+- Added a quit button in in-game UI.
